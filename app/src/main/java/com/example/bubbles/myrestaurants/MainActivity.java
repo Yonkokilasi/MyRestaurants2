@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mFindRestaurantsButton;
     private EditText mLocationEditText;
     private TextView mmyRestaurantsTextView;
-    private ListView mListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         Typeface dumbFont = Typeface.createFromAsset(getAssets(), "fonts/3Dumb.ttf");
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
-        mListView = (ListView) findViewById(R.id.listView);     ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,restaurants);
-        mListView.setAdapter(adapter);
+
         mmyRestaurantsTextView.setTypeface(ostrichFont);
         mFindRestaurantsButton.setTypeface(dumbFont);
 
