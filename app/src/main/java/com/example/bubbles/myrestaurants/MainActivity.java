@@ -13,23 +13,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = MainActivity.class.getSimpleName();
-    private Button mFindRestaurantsButton;
-    private EditText mLocationEditText;
-    private TextView mmyRestaurantsTextView;
+    @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
+    @Bind(R.id.locationEditText) EditText mLocationEditText;
+    @Bind(R.id.myRestaurantsTextView) TextView mmyRestaurantsTextView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLocationEditText = (EditText) findViewById(R.id.locationEditText);
-
-        mFindRestaurantsButton = (Button) findViewById(R.id.findRestaurantsButton);
-
-        mmyRestaurantsTextView = (TextView) findViewById(R.id.myRestaurantTextView);
-
+        ButterKnife.bind(this);
         Typeface dumbFont = Typeface.createFromAsset(getAssets(), "fonts/3Dumb.ttf");
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
 

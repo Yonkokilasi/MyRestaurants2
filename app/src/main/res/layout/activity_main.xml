@@ -20,7 +20,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/myRestaurantTextView"
+        android:id="@+id/myRestaurantsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorIcons"
