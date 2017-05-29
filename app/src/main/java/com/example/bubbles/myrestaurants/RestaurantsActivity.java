@@ -13,8 +13,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
 public class RestaurantsActivity extends AppCompatActivity {
@@ -27,14 +33,20 @@ public class RestaurantsActivity extends AppCompatActivity {
             "Slappy Cakes", "Equinox", "Miss Delta's", "Andina",
             "Lardo", "Portland City Grill", "Fat Head's Brewery",
             "Chipotle", "Subway"};
-
+    private String[] cuisines = new String[] {"Vegan Food", "Breakfast",
+            "Fishs Dishs", "Scandinavian", "Coffee", "English Food", "Burgers",
+            "Fast Food", "Noodle Soups", "Mexican", "BBQ", "Cuban",
+            "Bar Food", "Sports Bar", "Breakfast", "Mexican" };
+    public static ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants);
+
+        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this,
+                android.R.layout.simple_list_item_1, restaurants,cuisines);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -48,6 +60,33 @@ public class RestaurantsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         mLocationTextView.setText("Here are all the restaurants near: " + location);
+        getRestaurants(location);
+
     }
-}
+    private void getRestaurants(String location) {
+        final YelpService yelpService = new YelpService();
+        yelpService.findRestaurants(location, new Callback() {
+            @Override
+            public void onFailure(Call call,IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                mRestaurants = yelpService.processResults(response);
+                RestaurantsActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] restaurantNames = new String[mRestaurants.size()];
+                        for (int i = 0; i < restaurantNames.length;i++) {
+                            restaurantNames[i] = mRestaurants.get(i).getName();
+                        }
+                        ArrayAdapter adapter = new ArrayAdapter(RestaurantsActivity.this,android.R.layout.simple_list_item_1,restaurantNames);
+                        mListView.setAdapter(adapter);
+                    }
+                });
+            }
+        });
+    }
+  }
 
