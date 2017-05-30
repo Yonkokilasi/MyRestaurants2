@@ -22,21 +22,21 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     private Context mContext;
 
-    public RestaurantListAdapter(Context context, ArrayList<Restaurant>restaurants) {
+    public RestaurantListAdapter(Context context, ArrayList<Restaurant> restaurants) {
         mContext = context;
         mRestaurants = restaurants;
     }
 
     @Override
     public RestaurantListAdapter.RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item, parent, false);
         RestaurantViewHolder viewHolder = new RestaurantViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RestaurantListAdapter.RestaurantViewHolder holder, int position) {
-    holder.bindRestaurant(mRestaurants.get(position));
+        holder.bindRestaurant(mRestaurants.get(position));
     }
 
     @Override
@@ -45,19 +45,19 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     }
 
     public class RestaurantViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.restaurantImageView)
-        ImageView mRestaurantImageView;
+        @Bind(R.id.restaurantImageView) ImageView mRestaurantImageView;
         @Bind(R.id.restaurantNameTextView) TextView mNameTextView;
         @Bind(R.id.categoryTextView) TextView mCategoryTextView;
-        @Bind(R.id.ratingTextView)
-        TextView mRatingTextView;
+        @Bind(R.id.ratingTextView) TextView mRatingTextView;
+        private Context mContext;
+
 
         public RestaurantViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
-
+            ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
         }
+
         public void bindRestaurant(Restaurant restaurant) {
             Picasso.with(mContext).load(restaurant.getImageUrl()).into(mRestaurantImageView);
             mNameTextView.setText(restaurant.getName());
