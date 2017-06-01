@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.bubbles.myrestaurants.MainActivity"
+    tools:context="com.example.bubbles.myrestaurants.ui.MainActivity"
     android:background="#000000">
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="407dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/img"
+        app:srcCompat="@drawable/f5"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -23,25 +23,22 @@
         android:id="@+id/myRestaurantsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorIcons"
-        android:textSize="60sp"
         android:text="My Restaurants"
-        android:layout_marginTop="58dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="55sp"
+        android:layout_marginTop="13dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="42dp"
-        android:layout_marginStart="42dp" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/locationEditText"
         android:layout_width="250sp"
         android:layout_height="27sp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorIcons"
         android:ems="10"
         android:hint="Enter Zip Code"
         android:inputType="text"
-        android:textColor="@color/colorIcons"
+        android:textColor="@color/colorPrimary"
         android:visibility="visible"
         android:layout_above="@+id/findRestaurantsButton"
         android:layout_centerHorizontal="true"
@@ -49,16 +46,17 @@
 
     <Button
         android:id="@+id/findRestaurantsButton"
-        android:layout_width="170sp"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryText"
         android:text="Find Restaurants"
         android:textColor="@color/colorIcons"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="434dp"
-        android:layout_marginBottom="199dp"
+        android:layout_marginBottom="102dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="10sp"/>
 
 
 

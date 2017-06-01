@@ -1,10 +1,9 @@
 package com.example.bubbles.myrestaurants;
 
-import android.app.Activity;
 import android.support.test.rule.ActivityTestRule;
-import android.view.View;
 
-import org.hamcrest.Matcher;
+import com.example.bubbles.myrestaurants.ui.MainActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 
